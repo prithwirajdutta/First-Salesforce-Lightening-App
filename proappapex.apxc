@@ -1,0 +1,11 @@
+public without sharing class proappapex {
+    @AuraEnabled
+    public static list<contact> searchcontacts(){
+        return [select Id, Name, Phone from Contact Limit 30];
+    }
+    @AuraEnabled
+    public static list<contact> searchbyquery(string searchquery){
+        string name = '%'+searchquery+'%';
+        return [select Id,Name,Phone from Contact where Name Like:name Limit 30];
+    }
+}
